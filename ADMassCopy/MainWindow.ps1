@@ -2,9 +2,32 @@
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName System.Windows.Forms
 
-# Initialize file browser
-$FileBrowser = New-Object System.Windows.Forms.OpenFileDialog -Property @{ 
-    InitialDirectory = [Environment]::GetFolderPath('Desktop') 
+# Get the the path of the file to copy
+Function Get-FilePath($initialDirectory) {
+
+    $FileBrowser = New-Object System.Windows.Forms.OpenFileDialog
+    $FileBrowser.InitialDirectory = "Desktop"
+    $FileBrowser.RestoreDirectory = "True" 
+
+    if($FileBrowser.ShowDialog() -eq "OK")
+    {
+        $FilePath += $FileBrowser.FileName
+    }
+    return $FilePath
+}
+
+# Get the path of folder where file needs to be saved
+Function Get-FolderPath($initialDirectory) {
+
+    $FolderPath = New-Object System.Windows.Forms.FolderBrowserDialog
+    $FolderPath.Description = "Select a folder"
+    $FolderPath.rootfolder = "MyComputer"
+
+    if($FolderPath.ShowDialog() -eq "OK")
+    {
+        $folder += $FolderPath.SelectedPath
+    }
+    return $folder
 }
 
 # XAML file location
@@ -37,8 +60,18 @@ $xaml.SelectNodes("//*[@Name]") | ForEach-Object {
 }
 Get-Variable var_*
 
+# Button Settings Below
+
 $var_BrowseBtn.Add_Click( {
-    $null = $FileBrowser.ShowDialog()
+    $FilePath = Get-FilePath
+    $var_BrowseTxt.Text = $FilePath
 })
+
+$var_LocationBtn.Add_Click( {
+    $FolderPath = Get-FolderPath
+    $var_LocationTxt.Text = $FolderPath
+})
+
+# Textbox Settings Below
 
 $Null = $window.ShowDialog()

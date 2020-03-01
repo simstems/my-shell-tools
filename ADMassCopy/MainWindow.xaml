@@ -12,7 +12,7 @@
                 <StackPanel>
                     <Grid Height="100">
                         <Label Content="Starts with:" HorizontalAlignment="Left" Margin="36,30,0,0" VerticalAlignment="Top"/>
-                        <TextBox Name="SearchTxt" HorizontalAlignment="Left" Margin="108,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <TextBox Name="SearchTxt" HorizontalAlignment="Left" Margin="108,32,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" MaxHeight="20"/>
                         <Button Name="FindBtn" Content="FIND" HorizontalAlignment="Left" Margin="36,70,0,0" VerticalAlignment="Top" Width="51"/>
                         <Button Name="AddBtn" Content="+ ADD" HorizontalAlignment="Left" Margin="102,70,0,0" VerticalAlignment="Top" Width="49"/>
                         <Button Name="RemoveBtn" Content="- REMOVE" HorizontalAlignment="Left" Margin="164,70,0,0" VerticalAlignment="Top" Width="64"/>
@@ -35,8 +35,8 @@
                     <Grid Height="122">
                         <Button Name="BrowseBtn" Content="Browse" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="55"/>
                         <Button Name="LocationBtn" Content="Location" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="55"/>
-                        <TextBox Name="BrowseTxt" HorizontalAlignment="Left" Margin="70,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
-                        <TextBox Name="LocationTxt" HorizontalAlignment="Left" Margin="70,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="148"/>
+                        <TextBox Name="BrowseTxt" HorizontalAlignment="Left" Margin="70,22,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="148" MaxHeight="20"/>
+                        <TextBox Name="LocationTxt" HorizontalAlignment="Left" Margin="70,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="148" MaxHeight="20"/>
                         <Button Name="SendBtn" Content="SEND" HorizontalAlignment="Center" Margin="0,92,0,0" VerticalAlignment="Top" Width="104"/>
                     </Grid>
                 </StackPanel>
