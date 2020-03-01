@@ -12,20 +12,20 @@
                 <StackPanel>
                     <Grid Height="100">
                         <Label Content="Starts with:" HorizontalAlignment="Left" Margin="36,30,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Margin="108,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                        <Button Content="FIND" HorizontalAlignment="Left" Margin="36,70,0,0" VerticalAlignment="Top" Width="51"/>
-                        <Button Content="+ ADD" HorizontalAlignment="Left" Margin="102,70,0,0" VerticalAlignment="Top" Width="49"/>
-                        <Button Content="- REMOVE" HorizontalAlignment="Left" Margin="164,70,0,0" VerticalAlignment="Top" Width="64"/>
+                        <TextBox Name="SearchTxt" HorizontalAlignment="Left" Margin="108,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Button Name="FindBtn" Content="FIND" HorizontalAlignment="Left" Margin="36,70,0,0" VerticalAlignment="Top" Width="51"/>
+                        <Button Name="AddBtn" Content="+ ADD" HorizontalAlignment="Left" Margin="102,70,0,0" VerticalAlignment="Top" Width="49"/>
+                        <Button Name="RemoveBtn" Content="- REMOVE" HorizontalAlignment="Left" Margin="164,70,0,0" VerticalAlignment="Top" Width="64"/>
                     </Grid>
                     <Grid Width="Auto" Height="219">
                         <TabControl>
                             <TabItem Header="Result">
                                 <Grid Background="#FFE5E5E5">
-                                    <DataGrid Width="Auto" Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto">
+                                    <DataGrid Width="Auto" Name="DataG1" ItemsSource="{Binding}" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto">
                                         <DataGrid.Columns>
-                                            <DataGridCheckBoxColumn Width="Auto" Header="Select"  Binding="{Binding HostSelect}"/>
-                                            <DataGridTextColumn MinWidth="172" Width="Auto" Header="Hostname" Binding="{Binding HostName}" />
-                                            <DataGridTextColumn Width="Auto" Header="Status" Binding="{Binding HostStatus}" />
+                                            <DataGridCheckBoxColumn x:Name="SelectCol" Width="Auto" Header="Select"  Binding="{Binding HostSelect}"/>
+                                            <DataGridTextColumn x:Name="HostnameCol" MinWidth="172" Width="Auto" Header="Hostname" Binding="{Binding HostName}" />
+                                            <DataGridTextColumn x:Name="StatusCol" Width="Auto" Header="Status" Binding="{Binding HostStatus}" />
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Grid>
@@ -33,11 +33,11 @@
                         </TabControl>
                     </Grid>
                     <Grid Height="122">
-                        <Button Content="Browse" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="55"/>
-                        <Button Content="Location" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="55"/>
-                        <TextBox HorizontalAlignment="Left" Margin="70,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
-                        <TextBox HorizontalAlignment="Left" Margin="70,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="148"/>
-                        <Button Content="SEND" HorizontalAlignment="Center" Margin="0,92,0,0" VerticalAlignment="Top" Width="104"/>
+                        <Button Name="BrowseBtn" Content="Browse" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="55"/>
+                        <Button Name="LocationBtn" Content="Location" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="55"/>
+                        <TextBox Name="BrowseTxt" HorizontalAlignment="Left" Margin="70,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
+                        <TextBox Name="LocationTxt" HorizontalAlignment="Left" Margin="70,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="148"/>
+                        <Button Name="SendBtn" Content="SEND" HorizontalAlignment="Center" Margin="0,92,0,0" VerticalAlignment="Top" Width="104"/>
                     </Grid>
                 </StackPanel>
             </TabItem>
