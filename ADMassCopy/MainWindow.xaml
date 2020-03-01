@@ -23,9 +23,9 @@
                                 <Grid Background="#FFE5E5E5">
                                     <DataGrid Width="Auto" Name="DataG1" ItemsSource="{Binding}" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto">
                                         <DataGrid.Columns>
-                                            <DataGridCheckBoxColumn x:Name="SelectCol" Width="Auto" Header="Select"  Binding="{Binding HostSelect}"/>
-                                            <DataGridTextColumn x:Name="HostnameCol" MinWidth="172" Width="Auto" Header="Hostname" Binding="{Binding HostName}" />
-                                            <DataGridTextColumn x:Name="StatusCol" Width="Auto" Header="Status" Binding="{Binding HostStatus}" />
+                                            <DataGridCheckBoxColumn Width="Auto" Header="Select"  Binding="{Binding HostSelect}"/>
+                                            <DataGridTextColumn MinWidth="172" Width="Auto" Header="Hostname" Binding="{Binding HostName}" />
+                                            <DataGridTextColumn Width="Auto" Header="Status" Binding="{Binding HostStatus}" />
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Grid>
