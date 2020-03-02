@@ -62,6 +62,18 @@ Get-Variable var_*
 
 # Button Settings Below
 
+$var_FindBtn.Add_Click( {
+   $SearchTxt = $var_SearchTxt.Text
+})
+
+$var_AddBtn.Add_Click( {
+    
+})
+
+$var_RemoveBtn.Add_Click( {
+    
+})
+
 $var_BrowseBtn.Add_Click( {
     $FilePath = Get-FilePath
     $var_BrowseTxt.Text = $FilePath
@@ -72,6 +84,12 @@ $var_LocationBtn.Add_Click( {
     $var_LocationTxt.Text = $FolderPath
 })
 
-# Textbox Settings Below
+$var_SendBtn.Add_Click( {
+    
+})
+
+# DataGrid Settings Below
+
+
 
 $Null = $window.ShowDialog()
