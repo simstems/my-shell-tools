@@ -2,6 +2,40 @@
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName System.Windows.Forms
 
+Function Find-Computer {
+
+    Param($NameStart)
+
+    [System.Collections.ArrayList]$ComputerArray = (Get-ADComputer -Filter "Name -like '$NameStart*'" -Properties DNSHostName | Select-Object DNSHostName).DNSHostName
+    $ToNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
+    $ComputerArray = $ComputerArray | Sort-Object $ToNatural
+
+    return $ComputerArray
+    
+}
+
+Function Show-Data {
+
+    Param($DataObject, $DataItems, $DataStatus)
+    for ($i=0; $i -le $DataItems.Length; $i++) {
+        $DataObject.AddChild([pscustomobject]@{HostName="$($DataItems[$i])";HostStatus="$($DataStatus[$i])"})
+    }
+}
+
+#Check whether computer is powered on or not
+function Get-Status {
+    param ($Computer)
+
+    $Status = Test-Connection -BufferSize 32 -Count 1 -ComputerName $Computer -Quiet
+    
+    return $Status
+}
+
+function Get-IsChecked {
+    param ($CheckStatus)
+    
+}
+
 # Get the the path of the file to copy
 Function Get-FilePath($initialDirectory) {
 
@@ -30,6 +64,11 @@ Function Get-FolderPath($initialDirectory) {
     return $folder
 }
 
+function Copy-File {
+    param ($File, $Location)
+    
+}
+
 # XAML file location
 $xamlFile = "MainWindow.xaml"
 
@@ -49,7 +88,6 @@ try {
 
 # Create variables based on form control names.
 # Variable will be named as 'var_<control name>'
-
 $xaml.SelectNodes("//*[@Name]") | ForEach-Object {
     #"trying item $($_.Name)"
     try {
@@ -60,36 +98,43 @@ $xaml.SelectNodes("//*[@Name]") | ForEach-Object {
 }
 Get-Variable var_*
 
-# Button Settings Below
-
+# Click find to start searching for computers
 $var_FindBtn.Add_Click( {
    $SearchTxt = $var_SearchTxt.Text
+   $data = Find-Computer -NameStart $SearchTxt
+   $status = Get-Status -Computer $data
+   Show-Data -DataObject $var_DataG1 -DataItems $data -DataStatus $status
 })
-
+# Click add to add more computers to the list 
+# of computers being displayed
 $var_AddBtn.Add_Click( {
     
 })
-
+# Click remove to remove computers from the list 
+# of computers being displayed
 $var_RemoveBtn.Add_Click( {
     
 })
-
+# Click browse to get the file that needs to be copied and display the path in a textbox
 $var_BrowseBtn.Add_Click( {
     $FilePath = Get-FilePath
     $var_BrowseTxt.Text = $FilePath
 })
-
+# Click location to set the location that the file needs to be copied to and display the path in a textbox
 $var_LocationBtn.Add_Click( {
     $FolderPath = Get-FolderPath
     $var_LocationTxt.Text = $FolderPath
 })
-
+# Click send to start copying the file to the location
 $var_SendBtn.Add_Click( {
-    
+    Copy-File -File $var_BrowseTxt.Text -Location $var_LocationTxt.Text
 })
-
-# DataGrid Settings Below
-
-
+#  Press the enter key to perform operation
+$var_SearchTxt.Add_KeyDown({
+    if ($_.KeyCode -eq "Enter") {
+        #logic
+        $var_FindBtn.PerformClick()
+    }
+})
 
 $Null = $window.ShowDialog()
