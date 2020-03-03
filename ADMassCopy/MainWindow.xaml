@@ -21,7 +21,7 @@
                         <TabControl>
                             <TabItem Header="Result">
                                 <Grid Background="#FFE5E5E5">
-                                    <DataGrid Width="Auto" Name="DataG1" ItemsSource="{Binding}" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto">
+                                    <DataGrid Name="DataG1" Width="Auto" IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto">
                                         <DataGrid.Columns>
                                             <DataGridCheckBoxColumn Width="Auto" Header="Select"  Binding="{Binding HostSelect}"/>
                                             <DataGridTextColumn MinWidth="172" Width="Auto" Header="Hostname" Binding="{Binding HostName}" />
